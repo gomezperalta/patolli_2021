@@ -1,0 +1,46 @@
+#Date: 31/03/2021 16:55
+
+#Dictionary of all crystal structures. Write the names of the files, separated by commas, without extension.
+DICTIONARY: garnet_structure, perovskite_structure
+
+#Text file with the architecture of all Artificial Neural Networks to train. Write the name without the extension.
+CONTROL_FILE: model_control_file
+
+#Database name. The default database is red_cod-db.pkl, located in support.
+DATABASE: default
+
+#Features file name. The default file is datosrahm.csv, located in support.
+FEATURES: default
+
+#Local function dictionary. The default file is fij_2.0_25_diccio, located in support.
+LOCAL_FUNCTION: default
+
+#Constrain the search of compounds to have a maximal number of Wyckoff sites? If not, write -1.
+MAX_SITIOS: 4
+
+#Contrain the search of compounds to have a minimal number of elements in their formula? If not, write -1.
+MIN_ELEMENTS: -1
+
+#Constrain the search of compounds to have a maximal number of atoms in their formula? If not, write -1.
+MAX_ATOMS: -1
+
+#Fraction of the whole compounds collection to use in the test set.
+TEST_FRAC: 0.15
+
+#Verbosity. 0: No verbose, 1: Verbose, 2: Too verbose
+VERBOSITY: 0
+
+#Incorporate the density of the compound to the input data? 0 for FALSE, 1 for True.
+USE_DENSITY: 1
+
+#Incorporate the average atomic radii and electronegativities to the input data? 0 for FALSE, 1 for True.
+USE_RAD_ELEC: 1
+
+#Incorporate the electronegativity differences to the input data? 0 for FALSE, 1 for True.
+USE_ELECDIFF: 0
+
+#Test the developed models with all the remaining compounds? 0 for FALSE, 1 for True.
+TEST_WITH_ALL_FALSE: 0
+
+#Take some compounds as examples of not identified phases? 0 for FALSE, 1 for True.
+NOT_IDENTIFIED: 1
