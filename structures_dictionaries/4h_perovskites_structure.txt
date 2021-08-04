@@ -1,0 +1,7 @@
+spacegroup: 194
+
+option: 0
+
+A: a,d
+B: f
+X: g,h

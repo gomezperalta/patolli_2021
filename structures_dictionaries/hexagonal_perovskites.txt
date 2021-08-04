@@ -1,0 +1,52 @@
+spacegroup: 194
+
+option:2h
+A: d
+B: a
+X: h
+
+option:4h
+
+A: a,d
+B: f
+X: g,h
+
+option: 6h
+
+A: b, f 
+B: a, f
+X: h, k
+
+option: 10h
+
+A: b,f,f
+B: a,f,f
+X: h,k,k
+
+spacegroup: 186
+
+option:2h
+A: b
+B: a
+X: c
+
+option: 6h
+
+A: a, b, b
+B: a, b, b
+X: c, c, c
+
+spacegroup: 185
+
+option:0
+A: a, b
+B: c
+X: d, c
+
+spacegroup: 166
+
+option: 0
+
+A: a,c
+B: b,c
+X: e,h

@@ -1,0 +1,8 @@
+spacegroup: 167
+
+option: 0
+
+A1: e 
+A2: a
+B: b
+X: f

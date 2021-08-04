@@ -1,0 +1,7 @@
+spacegroup: 166
+
+option: 0
+
+A: a,c
+B: b,c
+X: e,h

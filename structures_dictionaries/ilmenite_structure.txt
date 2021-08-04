@@ -1,0 +1,6 @@
+spacegroup: 148
+
+option: 0
+A: c 
+B: c
+C: f

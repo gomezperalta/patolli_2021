@@ -1,0 +1,5 @@
+spacegroup: 61
+
+option: 0
+A: c 
+X: c, c

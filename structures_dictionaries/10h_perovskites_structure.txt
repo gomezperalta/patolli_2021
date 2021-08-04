@@ -1,0 +1,7 @@
+spacegroup: 194
+
+option: 0
+
+A: b,f,f
+B: a,f,f
+X: h,k,k

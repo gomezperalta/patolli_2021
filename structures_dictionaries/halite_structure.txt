@@ -1,0 +1,5 @@
+spacegroup: 225
+
+option: 0
+A: a 
+B: b

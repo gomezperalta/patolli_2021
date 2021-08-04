@@ -1,0 +1,7 @@
+spacegroup: 230
+
+option: 0
+D: c
+O: a
+T: d
+V: h

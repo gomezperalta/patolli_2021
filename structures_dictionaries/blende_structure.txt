@@ -1,0 +1,12 @@
+spacegroup: 216
+
+option: 0
+A: a 
+B: c
+
+spacegroup: 122
+
+option:0
+A: a
+B: b
+C: d

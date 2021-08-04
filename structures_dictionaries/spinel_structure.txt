@@ -1,0 +1,59 @@
+spacegroup: 227
+
+option: 0
+A: a 
+B: d
+X: e
+
+spacegroup: 216
+
+option: 0
+A1: a
+A2: d
+B: e
+X: e, e
+
+spacegroup: 212
+
+option: 0
+A: c
+B1: b
+B2: d
+X: c, e
+
+spacegroup: 198
+
+option: 0
+A: a, a
+B1: a
+B2: b
+X: a, a, b, b
+
+spacegroup: 141
+
+option: 0
+A: a
+B: d
+X: h
+
+spacegroup: 95
+
+option: 0
+A: c
+B: a, b
+X: d, d
+
+spacegroup: 91
+
+option: 0
+A: c
+B1: a
+B2: b
+X: d, d
+
+spacegroup: 74
+
+option: 0
+A: h
+B: a, e, g
+X: e, e, h, j

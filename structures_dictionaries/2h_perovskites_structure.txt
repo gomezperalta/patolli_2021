@@ -1,0 +1,20 @@
+spacegroup: 194
+
+option:2
+A: d
+B: a
+X: h
+
+spacegroup: 185
+
+option:0
+A: a, b
+B: c
+X: d, c
+
+spacegroup: 186
+
+option:0
+A: b
+B: a
+X: c

@@ -1,0 +1,56 @@
+spacegroup: 139
+
+option: 0
+A: e
+B: a
+X: e, c
+
+option: 1
+A: b, e
+B: e
+X: a, e, g
+
+option: 2
+A1: d
+A2: a
+B: e
+X: b, e, g
+
+option: 3
+
+A1: d
+A2: e
+B: a, e
+X: c, e, e, g
+
+spacegroup: 129
+
+option: 0
+
+A: c, c
+B: c
+X: a, c, f
+
+spacegroup: 123
+
+option: 0
+
+A1: d
+A2: c
+B: g
+X: a, g, i
+
+option: 1
+
+A1: d
+A2: h
+B: a, g
+X: f, g, g, i
+
+spacegroup: 64
+
+option: 0
+
+A: f
+B: a
+X: e, f

@@ -1,0 +1,5 @@
+spacegroup: 141
+
+option: 0
+A: a 
+X: e
