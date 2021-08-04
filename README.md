@@ -33,5 +33,6 @@ The text file patolli.inp calls other text files, which contain the characterist
 You should not remove the files within the directory 'support'. Otherwise, patolli.py crashes.
 
 If you benefit of this code, I appreciate that you cite the next article:
-
-Juan I. Gómez-Peralta, X. Bokhimi. Journal of Solid State Chemistry, Vol. 285 (2020) 121253.
+<ol>
+  <li> J. I. Gómez-Peralta, X. Bokhimi. Journal of Solid State Chemistry, Vol. 285 (2020) 121253. </li>
+</ol>
