@@ -519,14 +519,14 @@ def raw_features_extractor(database='./support/red_cod-db.pkl', sites=-1,
     return x, y, S, fracsum, df
 
 def add_rad_elec(X = np.ones((1,1,1))):
-	"""
-	This function gets the average atomic radii and electronegativities per site for each compound. 
-	Parameters:
-		X: a Numpy array
-	Returns:
-		x: a Numpy array. The dimensions of the array correspond to a tensor of shape 
-		(samples,1,atomic radii and electronegativites).
-	"""
+    """
+    This function gets the average atomic radii and electronegativities per site for each compound. 
+    Parameters:
+	X: a Numpy array
+    Returns:
+	x: a Numpy array. The dimensions of the array correspond to a tensor of shape 
+	(samples,1,atomic radii and electronegativites).
+    """
     X = X[:,:,:2]
     x = X.reshape((X.shape[0], 1, X.shape[1]*X.shape[2]))
     return x
