@@ -7,11 +7,11 @@ Patolli 2021 created on Sun Jan 24 14:41 2021
 Contact: gomezperalta.ai@gmail.com
 """
 
-import keras.layers as layers
-import keras.models as models
-import keras.utils as kutils
-import keras.callbacks as callbacks
-import keras.optimizers as optimizer
+import tensorflow.keras.layers as layers
+import tensorflow.keras.models as models
+import tensorflow.keras.utils as kutils
+import tensorflow.keras.callbacks as callbacks
+import tensorflow.keras.optimizers as optimizer
 from sklearn.utils import shuffle
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support as PRFS
@@ -37,7 +37,7 @@ def lab2symm(sgnum='001',label='a'):
     Returns:
         A string with the point-symmetry group
     """
-    wyck_dic=np.load('./support/WyckoffSG_dict.npy').item()['wycksym']
+    wyck_dic=np.load('./support/WyckoffSG_dict.npy', allow_pickle=True).item()['wycksym']
     return wyck_dic[sgnum].get(label)
 
 def create_dictionary(file='dictionary'):
@@ -276,7 +276,7 @@ def create_collection(database='./support/red_cod-db.pkl', sites=-1, elements=-1
     
         trydata=data.loc[data['sgnum'].isin([int(i) for i in \
                          list(diccionario.keys())])].reset_index(drop=True)
-        wyck_dic=np.load('./support/WyckoffSG_dict.npy').item()['wycksym']
+        wyck_dic=np.load('./support/WyckoffSG_dict.npy', allow_pickle=True).item()['wycksym']
     
         trydata['labels'] = [[list(item.keys())[0] for item in \
                list(trydata['WyckOcc'][row].values())] for row in range(len(trydata))]
@@ -314,9 +314,7 @@ def create_collection(database='./support/red_cod-db.pkl', sites=-1, elements=-1
     idx = {k:v for v,k in enumerate(sorted(final_data['target'].unique()))}
     
     for row in range(final_data.shape[0]):
-        final_data = final_data.set_value(row, 
-                                          'target', 
-                                          idx.get(final_data['target'][row],None))
+        final_data.at[row, 'target'] = idx.get(final_data['target'][row],None)
     if not_identified:
         for item in sitios:
             data_temp=df[df['sitios'] == item].reset_index(drop=True)
@@ -428,7 +426,7 @@ def raw_features_extractor(database='./support/red_cod-db.pkl', sites=-1,
     
     X=np.zeros((len(df),max_sitios,104))
     mult=np.zeros((len(df),max_sitios))
-    wyckmul=np.load('./support/WyckoffSG_dict.npy').item()['wyckmul']
+    wyckmul=np.load('./support/WyckoffSG_dict.npy', allow_pickle=True).item()['wyckmul']
     
     if length_dict != 1:
         y=np.zeros((len(df), len(df['target'].unique())))
@@ -574,7 +572,7 @@ def inout_creator(df = pd.DataFrame(), features='./support/datosrahm.csv'):
     X=np.zeros((len(df),max_sitios,104))
 
     mult=np.zeros((len(df),max_sitios))
-    wyckmul=np.load('./support/WyckoffSG_dict.npy').item()['wyckmul']
+    wyckmul=np.load('./support/WyckoffSG_dict.npy', allow_pickle=True).item()['wyckmul']
     
     todelete = list()
     
@@ -716,7 +714,7 @@ def append_local_functions(X = np.zeros((1,1,1)), df = pd.DataFrame(),
     """
     start = time.time()
     print('The dictionary ' + local_function + ' will be used for local functions')
-    fij = np.load(local_function + '.npy').item()
+    fij = np.load(local_function + '.npy', allow_pickle=True).item()
     
     delrow = list()
     n = np.max(df['sitios'])
@@ -768,7 +766,7 @@ def append_density(df=pd.DataFrame(), density_diccio='./support/density_diccio.n
 	Returns:
 		An array with the density of the compounds of the collection.
     """
-    diccio = np.load(density_diccio).item()
+    diccio = np.load(density_diccio, allow_pickle=True).item()
     
     xdensity = np.zeros((df.shape[0], 1, 1))
     for row in range(df.shape[0]):
@@ -983,11 +981,11 @@ def modelo(hidden_layers=[1], activation='tanh',features=1,
     if output_nodes == 1:
         model.compile(loss='binary_crossentropy', 
                       optimizer=optimizer.Adam(beta_1=beta_1, beta_2=beta_2, lr=lr, decay=decay,), 
-                      metrics=['accuracy'])
+                      metrics=['acc'])
     else:
         model.compile(loss='categorical_crossentropy', 
                       optimizer=optimizer.Adam(beta_1=beta_1, beta_2=beta_2, lr=lr, decay=decay,), 
-                      metrics=['accuracy'])
+                      metrics=['acc'])
     
     return model
 
