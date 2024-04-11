@@ -972,15 +972,6 @@ def modelo(hidden_layers=[1], activation='tanh',features=1,
             vmiddle = layers.Activation(activation)(vmiddle)
         
         if dropout: vmiddle = layers.Dropout(dropout)(vmiddle)
-    
-    if len(hidden_layers) != 1:
-
-        for item in range(1,len(hidden_layers)):
-            vmiddle = layers.Dense(hidden_layers[item], 
-                                   kernel_initializer='random_uniform')(vmiddle)
-            vmiddle = layers.LayerNormalization()(vmiddle)
-            vmiddle = layers.Activation(activation)(vmiddle)
-            vmiddle = layers.Dropout(dropout)(vmiddle)
             
     if output_nodes == 1:
         vexit =layers.Dense(1, kernel_initializer='random_uniform')(vmiddle)
