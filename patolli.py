@@ -948,34 +948,47 @@ def modelo(hidden_layers=[1], activation='tanh',features=1,
     """
         
     input_layer = layers.Input(shape=(features,))
-    vmiddle = layers.Dense(hidden_layers[0], 
-                           kernel_initializer='random_uniform')(input_layer)
-    vmiddle = layers.Activation(activation)(vmiddle)
-    vmiddle = layers.Dropout(dropout)(vmiddle)
+
+    for item in range(len(hidden_layers)):
+
+        if item == 0:
+            vmiddle = layers.Dense(hidden_layers[item], 
+                                   kernel_initializer='random_uniform')(input_layer)
+        else:
+            vmiddle = layers.Dense(hidden_layers[item], 
+                                   kernel_initializer='random_uniform')(vmiddle)
+    
+        vmiddle = layers.LayerNormalization()(vmiddle)
+
+        if item == len(hidden_layers) - 1:
+            skipConnection = layers.Dense(hidden_layers[item], 
+                                   kernel_initializer='random_uniform')(input_layer)
+            skipConnection = layers.LayerNormalization()(skipConnection)
+            vmiddle = layers.Add()([vmiddle, skipConnection])
+
+        if activation == 'leaky_relu':
+            vmiddle = layers.LeakyReLU(0.15)(vmiddle)
+        else:
+            vmiddle = layers.Activation(activation)(vmiddle)
+        
+        if dropout: vmiddle = layers.Dropout(dropout)(vmiddle)
     
     if len(hidden_layers) != 1:
 
         for item in range(1,len(hidden_layers)):
             vmiddle = layers.Dense(hidden_layers[item], 
                                    kernel_initializer='random_uniform')(vmiddle)
+            vmiddle = layers.LayerNormalization()(vmiddle)
             vmiddle = layers.Activation(activation)(vmiddle)
             vmiddle = layers.Dropout(dropout)(vmiddle)
             
-        if output_nodes == 1:
-            vexit =layers.Dense(1, kernel_initializer='random_uniform')(vmiddle)
-            vexit =layers.Activation('sigmoid')(vexit)
-        else:
-            vexit =layers.Dense(output_nodes, kernel_initializer='random_uniform')(vmiddle)
-            vexit =layers.Activation('softmax')(vexit)
-    
+    if output_nodes == 1:
+        vexit =layers.Dense(1, kernel_initializer='random_uniform')(vmiddle)
+        vexit =layers.Activation('sigmoid')(vexit)
     else:
-        if output_nodes == 1:
-            vexit =layers.Dense(1, kernel_initializer='random_uniform')(vmiddle)
-            vexit =layers.Activation('sigmoid')(vexit)
-        else:
-            vexit =layers.Dense(output_nodes, kernel_initializer='random_uniform')(vmiddle)
-            vexit =layers.Activation('softmax')(vexit)
-
+        vexit =layers.Dense(output_nodes, kernel_initializer='random_uniform')(vmiddle)
+        vexit =layers.Activation('softmax')(vexit)
+    
     model = models.Model(inputs=input_layer, outputs=vexit)
     
     if output_nodes == 1:
@@ -1324,16 +1337,16 @@ def create_patolli(database='./support/red_cod-db.pkl', sites = -1, elements=-1,
     
     directorio = time.ctime().replace(' ', '_').replace(':','_')
     os.system('mkdir ' + directorio)
-    os.system('mv compounds_collection.csv ' + directorio +'/')
-    os.system('mv multiplicities.npy ' + directorio +'/')
-    os.system('mv occupation_fractions.npy ' + directorio +'/')
-    os.system('mv output_values.npy ' + directorio +'/')
-    os.system('mv raw_features.npy ' + directorio +'/')
-    os.system('mv X*.npy ' + directorio +'/')
-    os.system('mv db*.csv ' + directorio +'/')
-    os.system('mv feature_standarisation* ' + directorio +'/')
+    os.system('move compounds_collection.csv ' + directorio +'/')
+    os.system('move multiplicities.npy ' + directorio +'/')
+    os.system('move occupation_fractions.npy ' + directorio +'/')
+    os.system('move output_values.npy ' + directorio +'/')
+    os.system('move raw_features.npy ' + directorio +'/')
+    os.system('move X*.npy ' + directorio +'/')
+    os.system('move db*.csv ' + directorio +'/')
+    os.system('move feature_standarisation* ' + directorio +'/')
     try:
-        os.system('mv output_str.txt ' + directorio +'/')    
+        os.system('move output_str.txt ' + directorio +'/')    
     except:
         print('The models to train correspond to binary classification')
         
@@ -1394,19 +1407,19 @@ def create_patolli(database='./support/red_cod-db.pkl', sites = -1, elements=-1,
             print('The function prfs_and_cnfmat cannot be executed.')
             print('Metrics are not created.')
 
-        os.system('mv *' + name + '* ' + directorio)
+        os.system('move *' + name + '* ' + directorio)
         
-    os.system('mv PRFS_traval.txt ' + directorio)
-    os.system('mv PRFS_test.txt ' + directorio)
-    os.system('cp ' + control_file + '.txt ' + directorio)
+    os.system('move PRFS_traval.txt ' + directorio)
+    os.system('move PRFS_test.txt ' + directorio)
+    os.system('copy ' + control_file + '.txt ' + directorio)
     
     if length_dict == 1:
-        os.system('cp ' + dictionary + '.txt ' + directorio)
+        os.system('copy ' + dictionary + '.txt ' + directorio)
     else:
         dictionaries = dictionary.split(',')
         dictionaries = [i.strip() for i in dictionaries]
         for diccionario in dictionaries:
-            os.system('cp ' + diccionario + '.txt ' + directorio)
+            os.system('copy ' + diccionario + '.txt ' + directorio)
        
     if test_with_all_false:
         test_all_false(directorio=directorio, database=database, 
